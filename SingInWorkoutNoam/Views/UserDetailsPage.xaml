@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SingInWorkoutNoam.Views.UserDetailsPage"
+             Title="UserDetailsPage">
+    <VerticalStackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            Padding="20"
+            Spacing="10">
+
+        <!-- First Name -->
+        <Border
+                Margin="0,0,0,10"
+                Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+            <Entry
+                    FontSize="18"
+                    Placeholder="First Name"
+                    TextColor="Wheat" 
+                    Text="{Binding FirstName}"/>
+        </Border>
+
+        <!-- Last Name -->
+        <Border
+                Margin="0,0,0,10"
+                Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+            <Entry
+                    FontSize="18"
+                    Placeholder="Last Name"
+                    TextColor="Wheat"
+                    Text="{Binding LastName}"/>
+        </Border>
+
+        <!-- Email -->
+        <Border
+                Margin="0,0,0,10"
+                Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+            <Entry
+                    Keyboard="Email"
+                    FontSize="18"
+                    Placeholder="Email"
+                    TextColor="Wheat"
+                    Text="{Binding Email}"/>
+        </Border>
+
+        <!-- Mobile -->
+        <Border
+                Margin="0,0,0,10"
+                Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+            <Entry
+                    Keyboard="Telephone"
+                    FontSize="18"
+                    Placeholder="Mobile"
+                    TextColor="Wheat"
+                    Text="{Binding Mobile}"/>
+        </Border>
+
+        <!-- Update Button -->
+        <Button
+                x:Name="UpdateButton"
+                CornerRadius="8"
+                FontSize="20"
+                HeightRequest="70"
+                Text="Update"
+                TextColor="White" />
+        <!--Clicked="UpdateButton_Clicked"-->
+            
+
+    </VerticalStackLayout>
+
+
+</ContentPage>

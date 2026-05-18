@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SingInWorkoutNoam.Views.SignInPage"
+             xmlns:views="clr-namespace:SingInWorkoutNoam.ViewModels"
+             x:DataType="views:SignInViewModel"
+             Title="SignInPage"
+             NavigationPage.HasNavigationBar="False"
+             FlowDirection="LeftToRight">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="LightCyan"/>
+            <GradientStop Offset="0.5" Color="#3a7bd5"/>
+            <GradientStop Offset="1.0" Color="Purple"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+            <!-- כותרת -->
+            <Label FontAttributes="Bold"
+               FontSize="25"
+               VerticalOptions="Center"
+               Text="Enter"
+               TextColor="Snow" />
+
+            <Border Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+                <Entry 
+                  Text="{Binding UserName}"
+                   Keyboard="Email"
+                   FontSize="18"
+                   Placeholder="Email"
+                   TextColor="Wheat"
+                   ReturnType="Go" />
+            </Border>
+
+            <Border Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+                <Grid Padding="10"
+                  ColumnDefinitions="*,Auto"
+                  VerticalOptions="Center">
+                    <Entry Text="{Binding UserPassword}"
+                       BackgroundColor="Transparent"
+                       FontSize="18"
+                       IsPassword="{Binding EntryAsPassword}"
+                       Placeholder="Password"
+                       TextColor="Wheat"
+                       VerticalOptions="Center" />
+
+                    <Button 
+                        Margin="5,0,0,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        FontSize="24"
+                        HorizontalOptions="End"
+                        FontFamily="MaterialIcons"
+                        Text="{Binding PassIcon}"
+                        TextColor="White"
+                        VerticalOptions="Center" 
+                        Command="{Binding ShowPasswordCommand}"                    
+                        />
+                </Grid>
+            </Border>
+
+            <!-- כפתור כניסה -->
+            <Button CornerRadius="8"
+                FontSize="18"
+                HeightRequest="50"
+                Text="Sign In"
+                TextColor="White"
+                IsEnabled="{Binding IsSignInButtonEnabled}"
+                Command="{Binding SignInCommand}"/>
+
+
+            <HorizontalStackLayout 
+            Spacing="10"
+            VerticalOptions="Center">
+                <CheckBox IsChecked="{Binding RememberMeChecked}" Color="White"/>
+                <Label Text="Remember me" TextColor="wheat" FontSize="16"/>
+            </HorizontalStackLayout>
+
+
+            <!-- קישור לסאין אפ  -->
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                <Label
+                Text="Don't have a account?"
+                TextColor="White"
+                FontSize="20"/>
+                <Button
+                BackgroundColor="Transparent"
+                Margin="15,0,0,0"
+                Text="SignUp"
+                TextColor="White"
+                FontSize="20"
+                FontAttributes="Bold"
+                Command="{Binding NavigateToSignUpCommand}"/>
+
+            </HorizontalStackLayout>
+
+
+            <!-- שגיאה -->
+            <Label 
+               FontSize="45"
+               HorizontalTextAlignment="Center"
+               IsVisible="{Binding SingInMessageVisible}"
+               Text="{Binding LoginMessage}"
+               TextColor="Red" />
+
+        </VerticalStackLayout>
+
+        <!--  מסך טעינה  -->
+        <Grid
+            HorizontalOptions="Fill"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Fill">
+
+            <Grid
+                HorizontalOptions="Fill"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Fill">
+
+                <BoxView
+                    BackgroundColor="LightBlue"
+                    HorizontalOptions="Fill"
+                    Opacity="0.7"
+                    VerticalOptions="Fill" />
+
+                <ActivityIndicator
+                    IsRunning="True"
+                    WidthRequest="100"
+                    Color="Beige" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

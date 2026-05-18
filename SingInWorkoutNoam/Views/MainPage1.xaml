@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SingInWorkoutNoam.Views.MainPage1"
+             Title="MainPage1"
+             BackgroundColor="#F5F7FA">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+        <!-- 🔹 TOP BAR -->
+        <ScrollView Grid.Row="0" Orientation="Horizontal" BackgroundColor="White">
+            <HorizontalStackLayout Padding="10" Spacing="10">
+
+                <Button Text="ALL" BackgroundColor="#EDEBFF" TextColor="#444" CornerRadius="15" Padding="15,5"/>
+
+                <Button Text="ADD PET"
+                        BackgroundColor="#6C63FF"
+                        TextColor="White"
+                        CornerRadius="20"
+                        Padding="15,5"/>
+
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- 🔹 TITLE -->
+        <Label Grid.Row="1"
+               Text="To do list"
+               FontSize="26"
+               FontAttributes="Bold"
+               TextColor="#222"
+               Margin="20,10,0,10"/>
+
+        <!-- 🔹 TASK LIST -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="20" Spacing="10">
+
+                <Frame CornerRadius="15"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Padding="15">
+
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Today"
+                               FontAttributes="Bold"
+                               TextColor="#444"/>
+
+                        <HorizontalStackLayout>
+                            <CheckBox />
+                            <Label Text="Task 1" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <CheckBox />
+                            <Label Text="Task 2" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <CheckBox />
+                            <Label Text="Task 3" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <CheckBox />
+                            <Label Text="Task 4" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+                </Frame>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 🔹 ADD TASK BUTTON (BOTTOM) -->
+        <Button Grid.Row="3"
+                Text="Add Task"
+                BackgroundColor="#6C63FF"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="55"
+                HorizontalOptions="Fill"
+                Margin="20"/>
+
+    </Grid>
+
+</ContentPage>

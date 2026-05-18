@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SingInWorkoutNoam.Views.UserListPage"
+             xmlns:models="clr-namespace:SingInWorkoutNoam.Models"
+             xmlns:viewmodels="clr-namespace:SingInWorkoutNoam.ViewModels"
+             Title="UserListPage"
+             x:DataType="viewmodels:UsersListViewModel">
+
+    <Grid RowDefinitions=".13*,.13*,.9*">
+        <Grid ColumnDefinitions="7*,3*">
+            <Label
+                Margin="80,0,0,0"
+                FontAttributes="Bold"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="Users List"
+                TextColor="CadetBlue"
+                VerticalOptions="Center" />
+            <Button
+                Grid.Column="1"
+                Background="Green"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Add"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+        </Grid>
+        <!--  Find && Filter Users 1:10  -->
+        <Grid Grid.Row="1" ColumnDefinitions="7*,3*">
+            <SearchBar
+                Placeholder="find user"
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding SearchText}" />
+            <Button
+                Grid.Column="1"
+                Margin="0,0,0,15"
+                Background="Transparent"
+                Command="{Binding ClearFilterCommand}"
+                Text="Hello World!" />
+            <!--  ImageSource="filteroff.png"  -->
+
+        </Grid>
+
+        <RefreshView
+            Grid.Row="2"
+            Command="{Binding GetAllUsersCommand}"
+            IsRefreshing="{Binding IsBusy}">
+
+            <!--  Users Collection  -->
+            <CollectionView
+                x:Name="UsersCollection"
+                Grid.Row="2"
+                ItemsSource="{Binding AllUsers}"
+                SelectionMode="None">
+
+                <CollectionView.Header>
+                    <HorizontalStackLayout>
+                        <Label
+                        HorizontalTextAlignment="Center"
+                        TextColor="Gray"
+                        Text="Pull down to refresh |"
+                        FontSize="15"
+                        Margin="20,0,0,0" />
+
+                        <Label
+                        HorizontalTextAlignment="Center"
+                        TextColor="Gray"
+                        Text="כותרת עליונה"
+                        FontSize="15"
+                        Margin="5,0,0,0" /> 
+                    </HorizontalStackLayout>
+                </CollectionView.Header>
+
+                <CollectionView.EmptyView>
+                    <StackLayout
+                        Padding="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                        <Label
+                            FontSize="24"
+                            HorizontalTextAlignment="Center"
+                            Text="Users not found!"
+                            TextColor="Gray" />
+                        <Label
+                            Margin="0,0,0,100"
+                            FontSize="24"
+                            HorizontalTextAlignment="Center"
+                            Text="Pull down to refresh"
+                            TextColor="Gray" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:AppUser">
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItem
+                                    Command="{ Binding BindingContext .UserDetailsPage ,Source ={ x:Reference UsersCollection }}"
+                                    CommandParameter ="{ Binding .}"
+                                    IconImageSource="account.png"
+                                    Text="צפיה" />
+
+                                <SwipeItem
+                                     Command="{ Binding BindingContext .DeleteUserCommand ,Source ={ x:Reference UsersCollection }}"
+                                     CommandParameter ="{ Binding .}"
+                                    IconImageSource="delete.png"
+                                    Text="מחיקה" />
+                            </SwipeView.LeftItems>
+
+                            <Border
+                                Margin="15,7"
+                                Padding="15"
+                                Background="White"
+                                Stroke="LightGray"
+                                StrokeShape="RoundRectangle 10">
+                                <Grid
+                                    ColumnDefinitions="*,Auto"
+                                    RowDefinitions="Auto, Auto"
+                                    RowSpacing="5">
+                                    <HorizontalStackLayout>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding FirstName}"
+                                            TextColor="Gray"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Margin="5,0,0,0"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding LastName}"
+                                            VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                    <Label
+                                        Grid.Row="1"
+                                        FontSize="13"
+                                        Text="{Binding UserEmail}"
+                                        TextColor="Gray"
+                                        VerticalOptions="Center" />
+                                    <Border
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        Padding="10,5"
+                                        BackgroundColor="{AppThemeBinding Light=LightGray,
+                                                                          Dark=#333333}"
+                                        StrokeShape="RoundRectangle 15"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="12"
+                                            Text="{Binding RegDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                            VerticalOptions="Center" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <HorizontalStackLayout>
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            TextColor="Gray"
+                            Text="To be continued... |"
+                            FontSize="15"
+                            Margin="20,0,0,0" />
+
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            TextColor="Gray"
+                            Text="כותרת תחתונה"
+                            FontSize="15"
+                            Margin="5,0,0,0" /> 
+                    </HorizontalStackLayout>
+                </CollectionView.Footer>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+
+</ContentPage>

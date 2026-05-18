@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SingInWorkoutNoam.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SingInWorkoutNoam.Views"
+    Title="MyNavigation">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <Button
+            Margin="5"
+            BackgroundColor="Wheat"
+            Command="{Binding LogoutCommand}"
+            FontSize="24"
+            FontFamily="MaterialIcons"
+            TextColor="Black"
+            Text="{Binding LogoutIcon}"
+            HorizontalOptions="Start" />
+
+            <!-- IsAdmin Option -->
+            <Button
+            Margin="0,5,5,5"
+            BackgroundColor="Wheat"
+            FontSize="24"
+            FontFamily="MaterialIcons"
+            TextColor="Black"
+            Text="&#xf02e;"
+            HorizontalOptions="Start"
+            IsVisible="{Binding IsAdmin}"
+            Command="{Binding AdminCommand}"/>
+
+            <Button
+            Margin="0,5,5,5"
+            BackgroundColor="Wheat"
+            FontSize="24"
+            FontFamily="MaterialIcons"
+            TextColor="Black"
+            Text="&#xe7fd;"
+            HorizontalOptions="Start"
+            Command="{Binding UserPageCommand}"/>
+
+            <Button
+            Margin="0,5,5,5"
+            BackgroundColor="Wheat"
+            FontSize="24"
+            FontFamily="MaterialIcons"
+            TextColor="Black"
+            Text="&#xe88a;"
+            HorizontalOptions="Start"
+            Command="{Binding MainPage}"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ShellContent
+    Title="Home page"
+    ContentTemplate="{DataTemplate local:MainPage1}"
+    Route="MainPage1" />
+    
+</Shell>

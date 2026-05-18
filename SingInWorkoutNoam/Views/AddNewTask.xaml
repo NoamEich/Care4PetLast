@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SingInWorkoutNoam.Views.AddNewTask"
+             Title="AddNewTask">
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="25"
+            Spacing="20">
+
+            <!-- Title -->
+            <Label
+                Text="New Task"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#1E1E1E" />
+
+            <!-- Pet Selection -->
+            <Label
+                Text="Choose Pet"
+                FontSize="16"
+                TextColor="#6C63FF" />
+
+            <Picker
+                Title="Select pet"
+                BackgroundColor="#F7F7F7"
+                HeightRequest="55"
+                TitleColor="Gray" />
+
+            <!-- Task Description -->
+            <Label
+                Text="Task Description"
+                FontSize="16"
+                TextColor="#6C63FF" />
+
+            <Editor
+                Placeholder="Enter task details..."
+                BackgroundColor="#F7F7F7"
+                HeightRequest="120"
+                TextColor="Black" />
+
+            <!-- Assign To -->
+            <Label
+                Text="Assign To"
+                FontSize="16"
+                TextColor="#6C63FF" />
+
+            <Entry
+                Placeholder="Who is responsible?"
+                BackgroundColor="#F7F7F7"
+                HeightRequest="55"
+                TextColor="Black" />
+
+            <!-- Due Date -->
+            <Label
+                Text="Due Date"
+                FontSize="16"
+                TextColor="#6C63FF" />
+
+            <DatePicker
+                BackgroundColor="#F7F7F7"
+                HeightRequest="55"
+                TextColor="Black" />
+
+            <!-- Due Time -->
+            <Label
+                Text="Due Time"
+                FontSize="16"
+                TextColor="#6C63FF" />
+
+            <TimePicker
+                BackgroundColor="#F7F7F7"
+                HeightRequest="55"
+                TextColor="Black" />
+
+            <!-- Create Button -->
+            <Button
+                Text="Create Task"
+                BackgroundColor="#6C63FF"
+                TextColor="White"
+                FontAttributes="Bold"
+                HeightRequest="60"
+                CornerRadius="18"
+                Margin="0,20,0,0" />
+
+            <!-- Cancel Button -->
+            <Button
+                Text="Cancel"
+                BackgroundColor="Transparent"
+                TextColor="#6C63FF"
+                FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+</ContentPage>

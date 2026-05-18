@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SingInWorkoutNoam.Views.AddPetPage"
+             Title="AddPetPage"
+             BackgroundColor="#F5F7FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="18">
+
+            <!-- 🔹 TITLE -->
+            <Label Text="Add New Pet"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#222"
+                   HorizontalOptions="Center"/>
+
+            <!-- 🔹 PET NAME -->
+            <Entry Placeholder="Pet Name"
+                   BackgroundColor="Transparent"
+                   TextColor="#333"/>
+
+            <BoxView HeightRequest="1" BackgroundColor="#6C63FF"/>
+
+            <!-- 🔹 PET TYPE -->
+            <Entry Placeholder="Pet Type (Dog, Cat...)"
+                   BackgroundColor="Transparent"
+                   TextColor="#333"/>
+
+            <BoxView HeightRequest="1" BackgroundColor="#6C63FF"/>
+
+            <!-- 🔹 BIRTHDAY -->
+            <DatePicker TextColor="#333"/>
+
+            <BoxView HeightRequest="1" BackgroundColor="#6C63FF"/>
+
+            <!-- 🔹 GENDER -->
+            <Picker Title="Select Gender">
+                <Picker.Items>
+                    <x:String>Male</x:String>
+                    <x:String>Female</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <BoxView HeightRequest="1" BackgroundColor="#6C63FF"/>
+
+            <!-- 🔹 IMAGE UPLOAD -->
+            <Frame HeightRequest="180"
+                   CornerRadius="15"
+                   BackgroundColor="#EDEFF3"
+                   HasShadow="False"
+                   Padding="0">
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="📷"
+                           FontSize="40"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Add Pet Image"
+                           TextColor="#777"/>
+                </VerticalStackLayout>
+
+            </Frame>
+
+            <!-- 🔹 ALLERGIES -->
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox />
+                <Label Text="Has allergies"
+                       VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <!-- 🔹 GENERAL NOTES -->
+            <Editor Placeholder="General notes..."
+                    AutoSize="TextChanges"
+                    HeightRequest="100"
+                    BackgroundColor="#FFFFFF"
+                    TextColor="#333"/>
+
+            <!-- 🔹 DOCUMENTS -->
+            <Button Text="Link / Add Files"
+                    BackgroundColor="Transparent"
+                    TextColor="#6C63FF"/>
+
+            <!-- 🔹 SAVE BUTTON -->
+            <Button Text="FINISH AND SAVE"
+                    BackgroundColor="#6C63FF"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    HeightRequest="55"
+                    Margin="0,10,0,20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+
+
+
+</ContentPage>
