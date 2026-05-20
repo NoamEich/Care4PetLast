@@ -14,6 +14,10 @@ namespace SingInWorkoutNoam.Helper
         public const string ADMIN_ICON = "\uf02e";
         public const string ACCOUNT_ICON = "\ue7fd";
         public const string HOME_ICON = "\ue88a";
+        
+        public const string FILTER_OFF_ICON = "\ueb32";
+        public const string FILTER_ON_ICON = "\uef4f";
+        public const string DELETE_USER_ICON = "\ue872";
 
     }
 }

@@ -1,24 +1,15 @@
+using SingInWorkoutNoam.Service;
+using SingInWorkoutNoam.Service.DBService;
 using SingInWorkoutNoam.ViewModels;
 
 namespace SingInWorkoutNoam.Views;
 
 public partial class UserListPage : ContentPage
 {
-	public UserListPage()
+	public UserListPage(IAlertService alertService, IAppUserRepository dbService, IAppLogger appLogger)
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.UsersListViewModel();
+		BindingContext = new ViewModels.UsersListViewModel(alertService, dbService, appLogger);
 
 	}
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        // Optionally, you can call a method to load data when the page appears
-        if (BindingContext is UsersListViewModel viewModel)
-        {
-
-            viewModel.GetAllUsersCommand?.Execute(null);
-
-        }
-    }
 }

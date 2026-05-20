@@ -1,4 +1,6 @@
-﻿using SingInWorkoutNoam.Helper;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using SingInWorkoutNoam.Helper;
 using SingInWorkoutNoam.Service;
 using SingInWorkoutNoam.Views;
 using System;
@@ -18,6 +20,7 @@ namespace SingInWorkoutNoam.ViewModels
         private string _accountIcon;
         private string _homeIcon;
 
+        
         public bool IsAdmin { get => (App.Current as App)?.CurrentUser?.IsAdmin ?? false; }
 
         public string LogoutIcon
@@ -70,6 +73,8 @@ namespace SingInWorkoutNoam.ViewModels
             }
         }
 
+        
+
         public ICommand LogoutCommand { get; }
         public ICommand UserPageCommand { get; }
         public ICommand AdminCommand { get; }
@@ -95,5 +100,6 @@ namespace SingInWorkoutNoam.ViewModels
             //OnPropertyChanged(nameof(IsAdmin));
             Application.Current.Windows[0].Page = new NavigationPage(_signInPage);
         }
+
     }
 }

@@ -8,5 +8,10 @@
             Text="Welcome to Admin Page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button
+            Margin="10"
+            Text="Users List"
+            Command="{Binding NavigateToUsersCommand}" />
     </VerticalStackLayout>
 </ContentPage>

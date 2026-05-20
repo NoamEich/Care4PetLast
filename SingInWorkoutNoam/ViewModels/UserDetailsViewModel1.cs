@@ -1,15 +1,18 @@
 ﻿using SingInWorkoutNoam.Models;
+using SingInWorkoutNoam.Service.DBService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SingInWorkoutNoam.ViewModels
 {
     [ QueryProperty ( nameof ( ReceivedUser ), " selectedUser " )]
     public class UserDetailsViewModel1 : ViewModelBase
     {
+        private IAppUserRepository _dbService;
         private string _firstName;
         private string _lastName;
         private string _email;
@@ -81,13 +84,18 @@ namespace SingInWorkoutNoam.ViewModels
             }
         }
 
-        public UserDetailsViewModel1()
+        public ICommand UpdateUserCommand { get; }
+
+        public UserDetailsViewModel1(IAppUserRepository dbService)
         {
-            if (ReceivedUser != null)
+            _dbService = dbService;  //Firebase user repo methods
+            UpdateUserCommand = new Command(UpdateUser);
+
+            if (ReceivedUser != null) //Arrived from admin page
             {
                 _user = ReceivedUser;
             }
-            else
+            else  //Arrived from Current User
             {
                 _user = (App.Current as App)!.CurrentUser;
             }
@@ -99,6 +107,36 @@ namespace SingInWorkoutNoam.ViewModels
             LastName = _user?.LastName ?? string.Empty;
             Email = _user?.UserEmail ?? string.Empty;
             Mobile = _user?.UserMobile ?? string.Empty;
+        }
+        private async void UpdateUser()
+        {
+            _user.FirstName = FirstName;
+            _user.LastName = LastName;
+            _user.UserMobile = Mobile;
+
+            try
+            {
+                IsBusy = true;
+                await _dbService.UpdateAsync(_user);
+
+
+                IsBusy = false;
+                //Show ntification: Update detailse succeded!
+                if (ReceivedUser != null)
+                {
+                    //return to users list
+                }
+                else
+                {
+                    (App.Current as App)!.CurrentUser = _user;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                IsBusy=false;
+                //Show error message 
+            }
         }
     }
 }

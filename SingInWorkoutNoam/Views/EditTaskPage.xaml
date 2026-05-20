@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SingInWorkoutNoam.Views.AddNewTask"
-             Title="AddNewTask">
+             x:Class="SingInWorkoutNoam.Views.EditTaskPage"
+             Title="EditTaskPage">
     <ScrollView>
 
         <VerticalStackLayout
@@ -11,7 +11,7 @@
 
             <!-- Title -->
             <Label
-                Text="New Task"
+                Text="Edit Task"
                 FontSize="32"
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
@@ -75,9 +75,9 @@
                 HeightRequest="55"
                 TextColor="Black" />
 
-            <!-- Create Button -->
+            <!-- Save Button -->
             <Button
-                Text="Create Task"
+                Text="Save Changes"
                 BackgroundColor="#6C63FF"
                 TextColor="White"
                 FontAttributes="Bold"

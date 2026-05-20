@@ -48,7 +48,7 @@
             TextColor="Black"
             Text="&#xe88a;"
             HorizontalOptions="Start"
-            Command="{Binding MainPage}"/>
+            Command="{Binding MainPage1}"/>
         </HorizontalStackLayout>
     </Shell.TitleView>
 

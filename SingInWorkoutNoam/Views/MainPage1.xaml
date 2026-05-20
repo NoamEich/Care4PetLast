@@ -17,7 +17,8 @@
                         BackgroundColor="#6C63FF"
                         TextColor="White"
                         CornerRadius="20"
-                        Padding="15,5"/>
+                        Padding="15,5"
+                        Command="{Binding GoToAddPetCommand}"/>
 
             </HorizontalStackLayout>
         </ScrollView>
@@ -80,7 +81,8 @@
                 CornerRadius="25"
                 HeightRequest="55"
                 HorizontalOptions="Fill"
-                Margin="20"/>
+                Margin="20"
+                 Command="{Binding GoToAddTaskCommand}"/>
 
     </Grid>
 

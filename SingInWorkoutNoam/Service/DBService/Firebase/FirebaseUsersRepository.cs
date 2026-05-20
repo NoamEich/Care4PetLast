@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using Firebase.Database.Streaming;
 using SingInWorkoutNoam.Models;
 using System;
 using System.Collections.Generic;
@@ -179,5 +180,22 @@ namespace SingInWorkoutNoam.Service.DBService.Firebase
             }
         }
 
+        //This method throw event on users collection changes in firestore database
+        public IObservable<FirebaseEvent<AppUser>> SubscribeToUserChanges()
+        {
+            try
+            {
+                return _firebaseClient!
+                .Child("users")
+                .AsObservable<AppUser>();
+                //.ObserveOn(System.Reactive.Concurrency.Scheduler.Default);
+            }
+            catch (Exception ex)
+            {
+                _appLogger.LogError("SubscribeToUserChanges failed: " + ex.Message);
+                throw new Exception("SubscribeToUserChanges failed!");
+            }
+
+        }
     }
 }

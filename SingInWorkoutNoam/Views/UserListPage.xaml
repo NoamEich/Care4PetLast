@@ -8,175 +8,149 @@
              x:DataType="viewmodels:UsersListViewModel">
 
     <Grid RowDefinitions=".13*,.13*,.9*">
-        <Grid ColumnDefinitions="7*,3*">
+        <Grid>
             <Label
-                Margin="80,0,0,0"
+                Margin="0,10,0,0"
                 FontAttributes="Bold"
                 FontSize="30"
                 HorizontalOptions="Center"
                 Text="Users List"
                 TextColor="CadetBlue"
                 VerticalOptions="Center" />
-            <Button
-                Grid.Column="1"
-                Background="Green"
-                FontSize="20"
-                HorizontalOptions="Center"
-                Text="Add"
-                TextColor="White"
-                VerticalOptions="Center" />
-
         </Grid>
+
         <!--  Find && Filter Users 1:10  -->
         <Grid Grid.Row="1" ColumnDefinitions="7*,3*">
-            <SearchBar
-                Placeholder="find user"
-                SearchCommand="{Binding SearchCommand}"
-                Text="{Binding SearchText}" />
+            <SearchBar Placeholder="find user" Text="{Binding SearchText}" />
+
             <Button
                 Grid.Column="1"
-                Margin="0,0,0,15"
-                Background="Transparent"
-                Command="{Binding ClearFilterCommand}"
-                Text="Hello World!" />
-            <!--  ImageSource="filteroff.png"  -->
+                Margin="0,0,15,15"
+                BackgroundColor="LightBlue"
+                FontFamily="MaterialIcons"
+                FontSize="19"
+                Text="{Binding FilterIcon}"
+                TextColor="DarkBlue"
+                WidthRequest="60" />
 
         </Grid>
 
-        <RefreshView
+        <!--  Users Collection  -->
+        <CollectionView
             Grid.Row="2"
-            Command="{Binding GetAllUsersCommand}"
-            IsRefreshing="{Binding IsBusy}">
+            ItemsSource="{Binding AllUsers}"
+            SelectedItem="{Binding SelectedUser,Mode=TwoWay}"
+            SelectionChangedCommand="{Binding NavigateToAccountPageCommand}"
+            SelectionMode="Single">
 
-            <!--  Users Collection  -->
-            <CollectionView
-                x:Name="UsersCollection"
-                Grid.Row="2"
-                ItemsSource="{Binding AllUsers}"
-                SelectionMode="None">
+            <!--  מה מציגים כאשר אין משתמשים  -->
+            <CollectionView.EmptyView>
+                <StackLayout
+                    Padding="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
 
-                <CollectionView.Header>
-                    <HorizontalStackLayout>
-                        <Label
+                    <Label
+                        FontSize="24"
                         HorizontalTextAlignment="Center"
-                        TextColor="Gray"
-                        Text="Pull down to refresh |"
-                        FontSize="15"
-                        Margin="20,0,0,0" />
+                        Text="Users not found!"
+                        TextColor="Gray" />
 
-                        <Label
+                    <Label
+                        Margin="0,0,0,100"
+                        FontSize="24"
                         HorizontalTextAlignment="Center"
-                        TextColor="Gray"
-                        Text="כותרת עליונה"
-                        FontSize="15"
-                        Margin="5,0,0,0" /> 
-                    </HorizontalStackLayout>
-                </CollectionView.Header>
+                        Text="Pull down to refresh"
+                        TextColor="Gray" />
+                </StackLayout>
+            </CollectionView.EmptyView>
 
-                <CollectionView.EmptyView>
-                    <StackLayout
-                        Padding="20"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center">
-                        <Label
-                            FontSize="24"
-                            HorizontalTextAlignment="Center"
-                            Text="Users not found!"
-                            TextColor="Gray" />
-                        <Label
-                            Margin="0,0,0,100"
-                            FontSize="24"
-                            HorizontalTextAlignment="Center"
-                            Text="Pull down to refresh"
-                            TextColor="Gray" />
-                    </StackLayout>
-                </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:AppUser">
+                    <Border
+                        Margin="15,7"
+                        Padding="15"
+                        Background="White"
+                        Stroke="LightGray"
+                        StrokeShape="RoundRectangle 10">
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:AppUser">
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItem
-                                    Command="{ Binding BindingContext .UserDetailsPage ,Source ={ x:Reference UsersCollection }}"
-                                    CommandParameter ="{ Binding .}"
-                                    IconImageSource="account.png"
-                                    Text="צפיה" />
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto, Auto"
+                            RowSpacing="5">
 
-                                <SwipeItem
-                                     Command="{ Binding BindingContext .DeleteUserCommand ,Source ={ x:Reference UsersCollection }}"
-                                     CommandParameter ="{ Binding .}"
-                                    IconImageSource="delete.png"
-                                    Text="מחיקה" />
-                            </SwipeView.LeftItems>
+                            <!--  User First and Last Name  -->
+                            <HorizontalStackLayout>
+                                <!--  User First Name  -->
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding FirstName}"
+                                    VerticalOptions="Center" />
 
+                                <!--  User Last Name  -->
+                                <Label
+                                    Margin="5,0,0,0"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding LastName}"
+                                    VerticalOptions="Center" />
+
+                            </HorizontalStackLayout>
+
+                            <!--  User Email  -->
+                            <Label
+                                Grid.Row="1"
+                                FontSize="13"
+                                Text="{Binding UserEmail}"
+                                TextColor="Gray"
+                                VerticalOptions="Center" />
+
+                            <!--  Registration Date  -->
                             <Border
-                                Margin="15,7"
-                                Padding="15"
-                                Background="White"
-                                Stroke="LightGray"
-                                StrokeShape="RoundRectangle 10">
-                                <Grid
-                                    ColumnDefinitions="*,Auto"
-                                    RowDefinitions="Auto, Auto"
-                                    RowSpacing="5">
-                                    <HorizontalStackLayout>
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="16"
-                                            Text="{Binding FirstName}"
-                                            TextColor="Gray"
-                                            VerticalOptions="Center" />
-                                        <Label
-                                            Margin="5,0,0,0"
-                                            FontAttributes="Bold"
-                                            FontSize="16"
-                                            Text="{Binding LastName}"
-                                            VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
-                                    <Label
-                                        Grid.Row="1"
-                                        FontSize="13"
-                                        Text="{Binding UserEmail}"
-                                        TextColor="Gray"
-                                        VerticalOptions="Center" />
-                                    <Border
-                                        Grid.RowSpan="2"
-                                        Grid.Column="1"
-                                        Padding="10,5"
-                                        BackgroundColor="{AppThemeBinding Light=LightGray,
-                                                                          Dark=#333333}"
-                                        StrokeShape="RoundRectangle 15"
-                                        VerticalOptions="Center">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="12"
-                                            Text="{Binding RegDate, StringFormat='{0:dd/MM/yyyy}'}"
-                                            VerticalOptions="Center" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.Footer>
-                    <HorizontalStackLayout>
-                        <Label
-                            HorizontalTextAlignment="Center"
-                            TextColor="Gray"
-                            Text="To be continued... |"
-                            FontSize="15"
-                            Margin="20,0,0,0" />
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Padding="10,5"
+                                StrokeShape="RoundRectangle 15"
+                                VerticalOptions="Center">
 
-                        <Label
-                            HorizontalTextAlignment="Center"
-                            TextColor="Gray"
-                            Text="כותרת תחתונה"
-                            FontSize="15"
-                            Margin="5,0,0,0" /> 
-                    </HorizontalStackLayout>
-                </CollectionView.Footer>
-            </CollectionView>
-        </RefreshView>
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="{Binding RegDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                    VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!--  מסך טעינה  -->
+        <Grid
+            HorizontalOptions="Fill"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Fill">
+
+            <!--  מסך טעינה  -->
+            <Grid
+                HorizontalOptions="Fill"
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Fill">
+
+                <BoxView
+                    BackgroundColor="LightBlue"
+                    HorizontalOptions="Fill"
+                    Opacity="0.7"
+                    VerticalOptions="Fill" />
+
+                <ActivityIndicator
+                    IsRunning="True"
+                    WidthRequest="100"
+                    Color="Beige" />
+            </Grid>
+        </Grid>
     </Grid>
+
 
 </ContentPage>
